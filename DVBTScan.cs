@@ -41,9 +41,6 @@ namespace DVBScanUtilPlugin
         if (_dvbtChannels.Count == 0)
           return;
 
-        RemoteControl.Instance.EpgGrabberEnabled = false;
-
-
         TvBusinessLayer layer = new TvBusinessLayer();
         Card card = layer.GetCardByDevicePath(RemoteControl.Instance.CardDevice(_cardNumber));
 
@@ -212,7 +209,6 @@ namespace DVBScanUtilPlugin
       finally
       {
         RemoteControl.Instance.StopCard(user);
-        RemoteControl.Instance.EpgGrabberEnabled = true;
       }
 
       if (radio.newChannels.Count == 0)
@@ -244,8 +240,6 @@ namespace DVBScanUtilPlugin
 
     public void DoWork()
     {
-      Thread.Sleep(5 * 1000);
-
       var layer = new TvBusinessLayer();
 
       _defaultTVGroup = layer.GetSetting("DVBTScanUtilPluginSetupDefaultGroup", "New").Value;

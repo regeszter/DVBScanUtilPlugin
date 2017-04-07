@@ -81,27 +81,25 @@ namespace DVBScanUtilPlugin
     
     private void DoWork()
     {
+      RemoteControl.Instance.EpgGrabberEnabled = false;
+
       Thread.Sleep(5 * 1000);
 
-      IList<Card> dbsCards = Card.ListAll();
-      foreach (Card card in dbsCards)
+      try
       {
-        if (CardType.DvbT == RemoteControl.Instance.Type(card.IdCard))
-        {
-          Log.Debug("DoScan DvbT card: " + card.IdCard);
+        DVBTScanUtilPlugin DVBTScanUtilPlugin = new DVBTScanUtilPlugin();
+        DVBTScanUtilPlugin.DoWork();
 
-          DVBTScanUtilPlugin DVBTScanUtilPlugin = new DVBTScanUtilPlugin();
-          DVBTScanUtilPlugin.DoWork();
-        }
-
-        if (CardType.DvbC == RemoteControl.Instance.Type(card.IdCard))
-        {
-          Log.Debug("DoScan DvbC card: " + card.IdCard);
-
-          DVBCScanUtilPlugin DVBCScanUtilPlugin = new DVBCScanUtilPlugin();
-          DVBCScanUtilPlugin.DoWork();
-        }
+        DVBCScanUtilPlugin DVBCScanUtilPlugin = new DVBCScanUtilPlugin();
+        DVBCScanUtilPlugin.DoWork();
       }
+      catch (Exception e)
+      {
+        Log.Error(e.Message);
+      }
+
+      RemoteControl.Instance.EpgGrabberEnabled = true;
+
       Log.Debug("DVBScanUtilPlugin finished");
     }
 
