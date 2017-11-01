@@ -71,7 +71,7 @@ namespace DVBScanUtilPlugin
     /// </summary>
     public string Version
     {
-      get { return "1.0.0.0"; }
+      get { return "1.1.0.0"; }
     }
 
     public SetupTv.SectionSettings Setup
@@ -81,6 +81,20 @@ namespace DVBScanUtilPlugin
     
     private void DoWork()
     {
+      TvBusinessLayer layer = new TvBusinessLayer();
+      String lastScanDate = layer.GetSetting("DVBScanUtilPluginLastScanDate", "").Value;
+
+      String thisDay = DateTime.Today.ToString();
+
+      if (lastScanDate == thisDay)
+      {
+        return;
+      }
+
+      Setting setting = layer.GetSetting("DVBScanUtilPluginLastScanDate", "");
+      setting.Value = thisDay;
+      setting.Persist();
+
       RemoteControl.Instance.EpgGrabberEnabled = false;
 
       Thread.Sleep(5 * 1000);
