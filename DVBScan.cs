@@ -84,6 +84,8 @@ namespace DVBScanUtilPlugin
       TvBusinessLayer layer = new TvBusinessLayer();
       String lastScanDate = layer.GetSetting("DVBScanUtilPluginLastScanDate", "").Value;
 
+      Log.Debug("Last scan date is {0}", lastScanDate);
+
       String thisDay = DateTime.Today.ToString();
 
       if (lastScanDate == thisDay)
@@ -91,7 +93,7 @@ namespace DVBScanUtilPlugin
         return;
       }
 
-      Setting setting = layer.GetSetting("DVBScanUtilPluginLastScanDate", "");
+      Setting setting = layer.GetSetting("DVBScanUtilPluginLastScanDate");
       setting.Value = thisDay;
       setting.Persist();
 
