@@ -12,6 +12,8 @@ namespace SetupTv.Sections
     private Label label3;
     private Label label1;
     private TextBox textBoxDVBCTuningXML;
+    private Label label4;
+    private TextBox textBoxDVBIPTuningXML;
     private TextBox textBoxDVBTTuningXML;
     #region constructors
 
@@ -30,10 +32,12 @@ namespace SetupTv.Sections
         String DVBTScanUtilPluginSetupDefaultGroup = layer.GetSetting("DVBTScanUtilPluginSetupDefaultGroup", "New").Value;
         String DVBTScanUtilPluginSetupTuningXML = layer.GetSetting("DVBTScanUtilPluginSetupTuningXML", "").Value;
         String DVBCScanUtilPluginSetupTuningXML = layer.GetSetting("DVBCScanUtilPluginSetupTuningXML", "").Value;
+        String DVBIPScanUtilPluginSetupTuningXML = layer.GetSetting("DVBIPScanUtilPluginSetupTuningXML", "").Value;
 
         textBoxDefaultGroup.Text = DVBTScanUtilPluginSetupDefaultGroup;
         textBoxDVBTTuningXML.Text = DVBTScanUtilPluginSetupTuningXML;
         textBoxDVBCTuningXML.Text = DVBCScanUtilPluginSetupTuningXML;
+        textBoxDVBIPTuningXML.Text = DVBIPScanUtilPluginSetupTuningXML;
       }
       catch { }
     }
@@ -54,6 +58,10 @@ namespace SetupTv.Sections
         Setting DVBCScanUtilPluginSetupTuningXML = layer.GetSetting("DVBCScanUtilPluginSetupTuningXML");
         DVBCScanUtilPluginSetupTuningXML.Value = textBoxDVBCTuningXML.Text;
         DVBCScanUtilPluginSetupTuningXML.Persist();
+
+        Setting DVBIPScanUtilPluginSetupTuningXML = layer.GetSetting("DVBIPScanUtilPluginSetupTuningXML");
+        DVBIPScanUtilPluginSetupTuningXML.Value = textBoxDVBIPTuningXML.Text;
+        DVBIPScanUtilPluginSetupTuningXML.Persist();
       }
       catch { }
     }
@@ -80,6 +88,8 @@ namespace SetupTv.Sections
       this.label3 = new System.Windows.Forms.Label();
       this.label1 = new System.Windows.Forms.Label();
       this.textBoxDVBCTuningXML = new System.Windows.Forms.TextBox();
+      this.label4 = new System.Windows.Forms.Label();
+      this.textBoxDVBIPTuningXML = new System.Windows.Forms.TextBox();
       this.SuspendLayout();
       // 
       // textBoxDVBTTuningXML
@@ -91,7 +101,7 @@ namespace SetupTv.Sections
       // 
       // textBoxDefaultGroup
       // 
-      this.textBoxDefaultGroup.Location = new System.Drawing.Point(132, 82);
+      this.textBoxDefaultGroup.Location = new System.Drawing.Point(132, 114);
       this.textBoxDefaultGroup.Name = "textBoxDefaultGroup";
       this.textBoxDefaultGroup.Size = new System.Drawing.Size(212, 20);
       this.textBoxDefaultGroup.TabIndex = 3;
@@ -108,7 +118,7 @@ namespace SetupTv.Sections
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(-3, 85);
+      this.label3.Location = new System.Drawing.Point(-3, 117);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(123, 13);
       this.label3.TabIndex = 5;
@@ -130,8 +140,26 @@ namespace SetupTv.Sections
       this.textBoxDVBCTuningXML.Size = new System.Drawing.Size(212, 20);
       this.textBoxDVBCTuningXML.TabIndex = 1;
       // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(-3, 85);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(100, 13);
+      this.label4.TabIndex = 9;
+      this.label4.Text = "DVBIP Tuning XML";
+      // 
+      // textBoxDVBIPTuningXML
+      // 
+      this.textBoxDVBIPTuningXML.Location = new System.Drawing.Point(132, 82);
+      this.textBoxDVBIPTuningXML.Name = "textBoxDVBIPTuningXML";
+      this.textBoxDVBIPTuningXML.Size = new System.Drawing.Size(212, 20);
+      this.textBoxDVBIPTuningXML.TabIndex = 8;
+      // 
       // DVBScanUtilPluginSetup
       // 
+      this.Controls.Add(this.label4);
+      this.Controls.Add(this.textBoxDVBIPTuningXML);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.textBoxDVBCTuningXML);
       this.Controls.Add(this.label3);

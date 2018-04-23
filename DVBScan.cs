@@ -71,7 +71,7 @@ namespace DVBScanUtilPlugin
     /// </summary>
     public string Version
     {
-      get { return "1.1.0.0"; }
+      get { return "1.2.0.0"; }
     }
 
     public SetupTv.SectionSettings Setup
@@ -108,6 +108,10 @@ namespace DVBScanUtilPlugin
 
         DVBCScanUtilPlugin DVBCScanUtilPlugin = new DVBCScanUtilPlugin();
         DVBCScanUtilPlugin.DoWork();
+
+        DVBIPScanUtilPlugin DVBIPScanUtilPlugin = new DVBIPScanUtilPlugin();
+        DVBIPScanUtilPlugin.DoWork();
+
       }
       catch (Exception e)
       {
